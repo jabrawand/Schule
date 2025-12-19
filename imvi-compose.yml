@@ -1,0 +1,49 @@
+version: "3.9"
+
+name: imvi-cms-net
+services:
+  imvidb:
+    image: mysql:8.0
+    container_name: imvi-db
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_password
+      MYSQL_DATABASE: imvi-cms-db
+      MYSQL_USER: imvi
+      MYSQL_PASSWORD: s3cr3t
+    volumes:
+      - imvidb_data:/var/lib/mysql
+    networks:
+      - imvi_cms_net
+    # ❗ DB NICHT EXTERN ERREICHBAR → KEIN ports:
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: imvi-pma
+    environment:
+      PMA_HOST: imvi-db
+    ports:
+      - "8082:80"
+    networks:
+      - imvi_cms_net
+
+  joomla:
+    image: joomla:latest
+    container_name: imvi-cms
+    environment:
+      JOOMLA_DB_HOST: imvi-db
+      JOOMLA_DB_USER: imvi
+      JOOMLA_DB_PASSWORD: s3cr3t
+      JOOMLA_DB_NAME: imvi-cms-db
+    ports:
+      - "8200:80"
+    volumes:
+      - imvi_data:/var/www/html
+    networks:
+      - imvi_cms_net
+
+networks:
+  imvi_cms_net:
+
+volumes:
+  imvidb_data:
+  imvi_data:

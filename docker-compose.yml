@@ -1,0 +1,49 @@
+version: "3.9"
+
+name: wiss-cms-net
+services:
+  wissdb:
+    image: mysql:8.0
+    container_name: wiss-db
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_password
+      MYSQL_DATABASE: wiss-cms-db
+      MYSQL_USER: wiss
+      MYSQL_PASSWORD: s3cr3t
+    volumes:
+      - wissdb_data:/var/lib/mysql
+    networks:
+      - wiss_cms_net
+    # ❗ DB NICHT EXTERN ERREICHBAR → KEIN ports:
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: wisspma
+    environment:
+      PMA_HOST: wissdb
+    ports:
+      - "8081:80"
+    networks:
+      - wiss_cms_net
+
+  joomla:
+    image: joomla:latest
+    container_name: wisscms
+    environment:
+      JOOMLA_DB_HOST: wissdb
+      JOOMLA_DB_USER: wiss
+      JOOMLA_DB_PASSWORD: s3cr3t
+      JOOMLA_DB_NAME: wiss-cms-db
+    ports:
+      - "8100:80"
+    volumes:
+      - wiss_joomla_data:/var/www/html
+    networks:
+      - wiss_cms_net
+
+networks:
+  wiss_cms_net:
+
+volumes:
+  wissdb_data:
+  wiss_joomla_data:
