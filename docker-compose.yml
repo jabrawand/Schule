@@ -1,49 +1,44 @@
 version: "3.9"
 
-name: wiss-cms-net
+name: docker-project
 services:
-  wissdb:
-    image: mysql:8.0
-    container_name: wiss-db
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
     environment:
-      MYSQL_ROOT_PASSWORD: my_secret_password
-      MYSQL_DATABASE: wiss-cms-db
-      MYSQL_USER: wiss
-      MYSQL_PASSWORD: s3cr3t
+      - "8100:8100"
     volumes:
-      - wissdb_data:/var/lib/mysql
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
     networks:
-      - wiss_cms_net
-    # ❗ DB NICHT EXTERN ERREICHBAR → KEIN ports:
+      - kmu_net
 
-  phpmyadmin:
-    image: phpmyadmin:latest
-    container_name: wisspma
-    environment:
-      PMA_HOST: wissdb
+  mediawiki:
+    image: mediawiki
+    container_name: mediawiki
     ports:
-      - "8081:80"
-    networks:
-      - wiss_cms_net
-
-  joomla:
-    image: joomla:latest
-    container_name: wisscms
-    environment:
-      JOOMLA_DB_HOST: wissdb
-      JOOMLA_DB_USER: wiss
-      JOOMLA_DB_PASSWORD: s3cr3t
-      JOOMLA_DB_NAME: wiss-cms-db
-    ports:
-      - "8100:80"
+      - "8085:80"
     volumes:
-      - wiss_joomla_data:/var/www/html
+      - mediawiki_data:/var/www/html
     networks:
-      - wiss_cms_net
+      - kmu_net
+
+  nextcloud:
+    image: nextcloud
+    container_name: nextcloud
+    ports:
+      - "8080:80"
+    volumes:
+      - nextcloud_data:/var/www/html
+    networks:
+      - kmu_net
 
 networks:
-  wiss_cms_net:
+  kmu_net:
+    driver: bridge
 
 volumes:
-  wissdb_data:
-  wiss_joomla_data:
+  portainer_data:
+  mediawiki_data:
+  nextcloud_data:
+
