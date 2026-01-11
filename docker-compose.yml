@@ -5,8 +5,8 @@ services:
   portainer:
     image: portainer/portainer-ce
     container_name: portainer
-    environment:
-      - "8100:8100"
+    ports:
+      - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
@@ -30,6 +30,7 @@ services:
       - "8080:80"
     volumes:
       - nextcloud_data:/var/www/html
+    
     networks:
       - kmu_net
 
