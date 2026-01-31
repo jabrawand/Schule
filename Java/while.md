@@ -36,6 +36,7 @@ while (countdown > 0) {
 System.out.println("Happy New Year!!");
 }
 ```
+---
 
 ### While Loop with false condition
 If the condition is `false` at the beginning, the code inside the loop will never run:
@@ -48,6 +49,7 @@ while (i < 5) {
   i++;
 }
 ```
+---
 ## Do While Loop
 
 ### Syntax
@@ -61,7 +63,8 @@ while (condition);
 
 > [!NOTE] 
 > The semicolon `;` after the `while` is required!
-
+> 
+---
 
 ```java
 int i = 0;do {
@@ -70,7 +73,7 @@ int i = 0;do {
 }
 while (i < 5);
 ```
-
+---
 ### Do While with condition false
 
 ```java
@@ -81,7 +84,7 @@ int i = 0;do {
 while (i < 5);
 ```
 
-> [!SUMMARY] 
+> [!NOTE] 
 > A `do/while` loop always runs at least once, even if the condition is false at the start. This is the key difference from a `while` loop, which would skip the code block completely in the same situation.
 >
 > This behavior makes `do/while` useful when you want something to happen at least once, such as showing a message or asking the user for input.
