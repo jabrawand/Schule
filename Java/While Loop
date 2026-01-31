@@ -1,0 +1,27 @@
+# While Loop
+The `while` loop repeats a block of code as long as the specified condition is **true**:
+
+```java
+while (condition) {
+    // code block
+}
+```
+---
+
+### Example
+In this code the loop will run as long as the variable `i` is less than 5:
+
+```java
+int i = 0;
+while (i < 5) {
+    System.out.println(i);
+    i++
+}
+```
+
+> [!NOTE]
+> Do not forget to increase the variable used in the condition (`i++`), otherwise the loop will never end!
+
+---
+### Countdoun Example
+
