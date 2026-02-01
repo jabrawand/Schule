@@ -1,7 +1,7 @@
 # Java Chaet Sheet
 
 ---
-## Content
+## Content 
 - [Java Chaet Sheet](#java-chaet-sheet)
   - [Content](#content)
 - [The main() Method](#the-main-method)
@@ -28,6 +28,12 @@
 - [Java Switch](#java-switch)
 - [Java While Loop](#java-while-loop)
 - [Java For Loop](#java-for-loop)
+  - [Print Numbers](#print-numbers-1)
+  - [Print Even Numbers](#print-even-numbers)
+  - [Sum of Numbers](#sum-of-numbers)
+  - [Reverse Output](#reverse-output)
+  - [For Loop False Condition](#for-loop-false-condition)
+  - [Nested Loop](#nested-loop)
 - [Java Break/Continue](#java-breakcontinue)
 - [Java Arrays](#java-arrays)
   - [Declare Arrays](#declare-arrays)
@@ -322,7 +328,108 @@ The general rules for naming variables are:
 
 ---
 # Java For Loop
+When you know exactly how many times you want to loop through a block of code, use the `for` loop.
 
+**Syntax**
+```java
+for (statement 1; statement 2; statement 3) {
+  // code block to be executed
+}
+```
+- **Statement 1** is executed (one time) before the execution of the code block.
+- **Statement 2** defines the condition for executing the code block.
+- **Statement 3** is executing (every time) after the code block has been executed.
+  
+---
+## Print Numbers
+For example print the numbers 0 to 4.
+
+```java
+for (int i = 0; i < 5; i++) {  
+  System.out.println(i);
+}
+```
+- **Statement 1** sets a variable before the loop starts.
+- **Statement 2** defines the condition for the loop to run: `i < 5`. If the condition is true, the loop will run again; if it is false, the loop ends.
+- **Statement 3** increases a value each time the code block has run: `i++`.
+
+---
+## Print Even Numbers
+This example prints even values between 0 and 10
+
+```java
+for (int i = 0; i <= 10; i = i + 2) {  
+  System.out.println(i);
+}
+// Output: 0 2 4 6 8 10
+```
+or combined with `if`
+```java
+for (int i = 0; i <= 10; i++) {  
+  if (i % 2 == 0){
+    System.out.println(i);
+  }
+}
+// Output: 0 2 4 6 8 10
+```
+---
+## Sum of Numbers
+
+```java
+int sum = 0;
+for (int i = 1; i <= 5; i++) {  
+  sum = sum + i;
+}
+System.out.println("Sum is " + sum);
+// Output: Sum is 15
+```
+---
+## Reverse Output
+
+```java
+for (int i = 5; i > 0; i--) {  
+  System.out.println(i);
+}
+```
+---
+## For Loop False Condition
+If the condition is `false` right from the start, the code inside the loop will be skipped.
+
+```java
+for (int i = 10; i < 5; i++) {
+  System.out.println("This will never be printed");
+}
+```
+---
+## Nested Loop
+It is also possible to place a loop inside another loop.
+The "inner loop" will be executed one time for each iteration of the "outer loop"
+
+```java
+// Outer loop
+for (int i = 1; i <= 2; i++) {
+  System.out.println("Outer: " + i); // Executes 2 times
+  
+  // Inner loop
+  for (int j = 1; j <= 3; j++) {
+    System.out.println(" Inner: " + j); // Executes 6 times (2 * 3)
+  }
+} 
+```
+**Multiplication Table Example**
+```java
+for (int i = 1; i <= 3; i++) {  
+  for (int j = 1; j <= 3; j++) {
+    System.out.print(i * j + " ");  
+  }  System.out.println();
+}
+```
+Output:
+```
+1 2 3
+2 4 6
+3 6 9
+```
 ---
 # Java Break/Continue
 
