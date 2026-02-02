@@ -19,10 +19,28 @@
   - [Mixing Text and Numbers](#mixing-text-and-numbers)
 - [Java Identifiers](#java-identifiers)
 - [Java Data Types](#java-data-types)
+  - [Primitive Data Types](#primitive-data-types)
 - [Java Strings](#java-strings)
-- [Java Booleans](#java-booleans)
+  - [length()](#length)
+  - [toUpperCase() / toLowerCase()](#touppercase--tolowercase)
+  - [indexOf()](#indexof)
+  - [charAt()](#charat)
+  - [equals()](#equals)
+- [trim()](#trim)
+  - [Strings - Special Characters](#strings---special-characters)
+    - [Example](#example)
+    - [Example](#example-1)
+  - [String Concatenation](#string-concatenation)
+  - [Concatenation in Sentences](#concatenation-in-sentences)
+    - [The concat() Method](#the-concat-method)
 - [Java Type Casting](#java-type-casting)
 - [Java Operators](#java-operators)
+  - [Arithmetic Operators](#arithmetic-operators)
+    - [Incrementing and Decrementing](#incrementing-and-decrementing)
+  - [Assignment Operators](#assignment-operators)
+  - [Comparison Operators](#comparison-operators)
+  - [Logical Operators](#logical-operators)
+  - [Java Operator Precendence](#java-operator-precendence)
 - [Java Math](#java-math)
 - [Java If...Else](#java-ifelse)
 - [Java Switch](#java-switch)
@@ -299,13 +317,235 @@ The general rules for naming variables are:
   
 ---
 # Java Data Types
+A variable in Java must be a specified data type.
 
+Data types are divided into two groups:
+
+- Primitive data types - includes `byte`, `short`, `int`, `long`, `float`, `double`, `boolean` and `char`
+- Non-primitive data types - such as `String`, `Arrays` and `Classes` 
+
+## Primitive Data Types
+
+A primitive data type specifies the type of a variable and the kind of values it can hold.
+
+There are eight primitive data types in Java:
+
+|Data Type|Description|
+|---|---|
+|`byte`|Stores whole numbers from -128 to 127|
+|`short`|Stores whole numbers from -32,768 to 32,767|
+|`int`|Stores whole numbers from -2,147,483,648 to 2,147,483,647|
+|`long`|Stores whole numbers from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
+|`float`|Stores fractional numbers. Sufficient for storing 6 to 7 decimal digits|
+|`double`|Stores fractional numbers. Sufficient for storing 15 to 16 decimal digits|
+|`boolean`|Stores true or false values|
+|`char`|Stores a single character/letter or ASCII values|
+
+> [!NOTE]
+> Once a variable is declared with a type, it cannot change to another later in the program.
+>
+> If you really need to change between types, you must use [type casting](#java-type-casting) or conversion methods (for example, turning an int into a double).
 
 ---
 # Java Strings
+A `String` variable contains a **collection of characters** surrounded by double quotes ("").
+
+A String in Java is actually an **object**, which means it contains methods that can perform certain operations on strings.
 
 ---
-# Java Booleans
+## length()
+You can find the **length** of a string with the `length()` method.
+
+**Example**
+```java
+String txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+System.out.println("The length of the txt string is: " + txt.length());
+// Output: The length of the txt string is: 26
+```
+
+---
+##  toUpperCase() / toLowerCase()
+The `toUpperCase()` method converts a string to **upper case** letters.
+The `toLowerCase()` method converts a string to **lower case** letters.
+
+**Example**
+```java
+String txt = "Hello World";
+System.out.println(txt.toUpperCase());   // Output: "HELLO WORLD"
+System.out.println(txt.toLowerCase());   // Output: "hello world"
+```
+
+---
+## indexOf()
+The `indexOf()` method returns the **index** (the position) of the first occurrence of a specified text in a string (including whitespace).
+
+**Example**
+```java
+String txt = "Please locate where 'locate' occurs!";
+System.out.println(txt.indexOf("locate")); // Output: 7
+```
+
+> [!NOTE]
+>
+> Java counts positions from zero.  
+> 0 is the first position in a string, 1 is the second, 2 is the third ...
+
+---
+## charAt()
+You can use the `charAt()` method to access a character at a **specific position** in a string.
+
+**Example**
+```java
+String txt = "Hello";
+System.out.println(txt.charAt(0));  // H
+System.out.println(txt.charAt(4));  // o
+```
+
+---
+## equals()
+To **compare** two strings, you can use the `equals()` method.
+
+**Example**
+```java
+String txt1 = "Hello";
+String txt2 = "Hello";
+
+String txt3 = "Greetings";
+String txt4 = "Great things";
+
+System.out.println(txt1.equals(txt2));  // Output: true
+System.out.println(txt3.equals(txt4));  // Output: false
+```
+
+---
+# trim()
+The `trim()` method removes **whitespace** from the beginning and the end of a string.
+
+**Example**
+```java
+String txt = "   Hello World   ";
+System.out.println("Before: [" + txt + "]");
+System.out.println("After:  [" + txt.trim() + "]");
+// Output: Before: [   Hello World   ]
+// Output: After: [Hello World]
+```
+
+---
+## Strings - Special Characters
+
+Because strings must be written within quotes, Java will misunderstand this string, and generate an error:
+
+```java
+String txt = "We are the so-called "Vikings" from the north.";
+// Output: error: ';' expected
+```
+
+The solution to avoid this problem, is to use the **backslash escape character**.
+
+The backslash (`\`) escape character turns special characters into string characters:
+
+|Escape character|Result|Description|
+|---|---|---|
+|\'|'|Single quote|
+|\"|"|Double quote|
+|\\|\|Backslash|
+
+The sequence `\"`  inserts a double quote in a string:
+
+```java
+String txt = "We are the so-called \"Vikings\" from the north.";
+```
+
+The sequence `\'`  inserts a single quote in a string:
+
+### Example
+
+```java
+String txt = "It\'s alright.";
+```
+
+The sequence `\\`  inserts a single backslash in a string:
+
+### Example
+
+```java
+String txt = "The character \\ is called backslash.";
+```
+
+Other common escape sequences that are valid in Java are:
+
+| Code | Result          |
+| ---- | --------------- |
+| \n   | New Line        |
+| \t   | Tab             |
+| \b   | Backspace       |
+| \r   | Carriage Return |
+| \f   | Form Feed       |
+
+
+> [!NOTE] Note
+> Most of these escape codes are rarely used in modern programming. The most common ones are `\n` (new line), `\"` (double quote), and `\\` (backslash).
+
+---
+## String Concatenation
+
+The `+` operator can be used between strings to combine them. This is called **concatenation**:
+
+```java
+String firstName = "John";
+String lastName = "Doe";
+System.out.println(firstName + " " + lastName);
+```
+
+> [!NOTE]
+> Note that there is added an empty `String` (" ") to create a space between firstName and lastName on print.
+
+---
+
+## Concatenation in Sentences
+
+You can use string concatenation to build sentences with both text and variables:
+
+ **Example**
+
+```java
+String name = "John";
+int age = 25;
+System.out.println("My name is " + name + " and I am " + age + " years old.");
+// Output: My name is John and I am 25 years old.
+```
+
+---
+
+### The concat() Method
+
+You can also use the `concat()` method to concatenate strings:
+
+ **Example**
+
+```java
+String firstName = "John ";
+String lastName = "Doe";
+System.out.println(firstName.concat(lastName));
+```
+
+You can also join more than two strings by chaining `concat()` calls:
+
+ **Example**
+
+```java
+String a = "Java ";
+String b = "is ";
+String c = "fun!";
+String result = a.concat(b).concat(c);
+System.out.println(result);
+// Output: Java is fun!
+```
+
+
+> [!NOTE] Note
+> While you can use `concat()` to join multiple strings, most developers prefer the `+` operator because it is shorter and easier to read.
+
 
 ---
 # Java Type Casting
@@ -313,9 +553,191 @@ The general rules for naming variables are:
 
 ---
 # Java Operators
+Operators are used to perform operations on variables and values.
+
+Java divides the operators into the following groups:
+
+- [Arithmetic operators](#arithmetic-operators)
+- [Assignment operators](#assignment-operators)
+- [Comparison operators](#comparison-operators)
+- [Logical operators](#logical-operators)
+- Bitwise operators
+
+---
+## Arithmetic Operators
+Arithmetic operators are used to perform common mathematical operations.
+
+
+| Opperator | Name           | Description                            | Example |
+| --------- | -------------- | -------------------------------------- | ------- |
+| +         | Addition       | Adds together two values               | x + y   |
+| -         | Subtraction    | Subtracts one value from another       | x - y   |
+| *         | Multiplikation | Multiplies two values                  | x * y   |
+| /         | Division       | Divides one value by another           | x / y   |
+| %         | Modulus        | Returns the division remainder         | x % y   |
+| ++        | Increment      | Increases the value of a variable by 1 | ++x     |
+| --        | Decrement      | Decreases the value of a variable by 1 | --x     |
+
+**Example**
+```java
+int x = 10;
+int y = 3;
+
+System.out.println(x + y); // 13
+System.out.println(x - y); // 7
+System.out.println(x * y); // 30
+System.out.println(x / y); // 3
+System.out.println(x % y); // 1
+
+int z = 5;
+++z;
+System.out.println(z); // 6
+--z;
+System.out.println(z); // 5
+```
+
+> [!NOTE]
+> When dividing two integers in Java, the result will also be an integer. For example, `10 / 3`gives `3`. If you want a decimal result, use `double`values, like `10.0 / 3`.
+
+**Example**
+```java
+int a = 10;
+int b = 3;
+System.out.println(a / b);   // Output: 3
+
+double c = 10.0d;
+double d = 3.0d;
+System.out.println(c / d);   // Output: 3.333...
+```
+
+---
+### Incrementing and Decrementing
+Incrementing and decrementing are very common in programming, especially when working with counters, loops, and arrays.
+
+The `++` operator increases a value by 1, while the `--` operator decreases a value by 1
+
+**Example Increment**
+```java
+int x = 5;
+
+++x; // Increment x by 1
+System.out.println(x); // 6
+```
+
+**Example Decrement**
+```java
+int x = 5;
+
+--x; // Decrement x by 1
+System.out.println(x); // 4
+```
+
+---
+## Assignment Operators
+Assignment operators are used to assign values to variables.
+
+```java
+int x = 10;
+```
+
+A list of all assignment operators:
+
+| Operator | Example | Same As    |
+| -------- | ------- | ---------- |
+| =        | x = 5   | x = 5      |
+| +=       | x += 3  | x = x + 3  |
+| -=       | x -= 3  | x = x - 3  |
+| *=       | x *= 3  | x = x * 3  |
+| /=       | x /= 3  | x = x / 3  |
+| %=       | x %= 3  | x = x % 3  |
+| &=       | x &= 3  | x = x & 3  |
+| \|=      | x \|= 3 | x = x \| 3 |
+| ^=       | x ^= 3  | x = x ^ 3  |
+| >>=      | x >>= 3 | x = x >> 3 |
+| <<=      | x <<= 3 | x = x << 3 |
+
+> [!NOTE] Note
+> Most assignment operators are just shorter ways of writing code. For example, `x += 5` is the same as `x = x + 5`, but shorter and often easier to read.
+> 
+
+---
+## Comparison Operators
+Comparison operators are used to compare two values (or variables). 
+
+The return value of a comparison is either `true` or `false`.
+
+**Example**
+```java
+int age = 18;
+
+System.out.println(age >= 18); // Output: true
+System.out.println(age < 18);  // Output: false
+```
+
+A list of all comparison operators:
+
+| Operator | Name                     | Example |
+| -------- | ------------------------ | ------- |
+| ==       | Equal to                 | x == y  |
+| !=       | Not equal                | x != y  |
+| >        | Greater than             | x > y   |
+| <        | Less than                | x < y   |
+| >=       | Greater than or equal to | x >= y  |
+| <=       | Less than or equal to    | x <= y  |
+
+
+---
+## Logical Operators
+Logical operators are used to determine the logic between variables or values, by combining multiple conditions.
+
+As with comparison operators, you can also test for `true`or `false` values with logical operators.
+
+| Operator | Name        | Description                                             | Example            |
+| -------- | ----------- | ------------------------------------------------------- | ------------------ |
+| &&       | Logical and | Returns true if both statements are true                | x < 5 &&  x < 10   |
+| \|       | Logical or  | Returns true if one of the statements is true           | x < 5 \| x < 4     |
+| !        | Logical not | Reverse the result, returns false if the result is true | !(x < 5 && x < 10) |
+
+**Example**
+```java
+boolean isLoggedIn = true;
+boolean isAdmin = false;
+
+System.out.println("Regular user: " + (isLoggedIn && !isAdmin)); // Output: Regular user: true
+System.out.println("Has access: " + (isLoggedIn || isAdmin)); // Output: Has access: true
+System.out.println("Not logged in: " + (!isLoggedIn)); // Output: false
+```
+
+---
+## Java Operator Precendence
+When a calculation contains more than one operator, Java follows **order of operations** rules to decide which part to calculate first.
+
+Common operators, from highest to lowest priority:
+
+- **Parentheses**:`()`
+- **Multiplication, Division, Modulus**: `*`, `/`, `%` 
+- **Multiplication, Division, Modulus**: `+`, `-` 
+- **Comparison**: `>`, `<`, `>=`, `<=`
+- **Equality**: `==`, `!=`
+- **Logical AND**: `&&` 
+- **Logical OR**: `||`
+- **Assignment**: `=` 
+
+**Example**
+```java
+int result1 = 2 + 3 * 4;     // 2 + 12 = 14
+int result2 = (2 + 3) * 4;   // 5 * 4 = 20
+
+System.out.println(result1);
+System.out.println(result2);
+```
+
+> [!NOTE]
+> Always use parentheses `( )` if you want to make sure the calculation is done in the order you expect. It also makes your code easier to read.
 
 ---
 # Java Math
+
 
 ---
 # Java If...Else
