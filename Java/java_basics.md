@@ -42,7 +42,25 @@
   - [Logical Operators](#logical-operators)
   - [Java Operator Precendence](#java-operator-precendence)
 - [Java Math](#java-math)
+  - [Math.max(x,y)](#mathmaxxy)
+  - [Math.min(_x,y_)](#mathminxy)
+  - [Math.sqrt(_x_)](#mathsqrtx)
+  - [Math.abs(_x_)](#mathabsx)
+  - [Math.pow(_x, y_)](#mathpowx-y)
+  - [Rounding Methods](#rounding-methods)
+  - [Random Numbers](#random-numbers)
+    - [Example](#example-2)
 - [Java If...Else](#java-ifelse)
+  - [The if Statement](#the-if-statement)
+  - [The else Statement](#the-else-statement)
+  - [The else if Statement](#the-else-if-statement)
+  - [Nested if](#nested-if)
+- [Java Ternary Operator](#java-ternary-operator)
+  - [Nested Ternary Operator](#nested-ternary-operator)
+- [Java Logical Operators in Condition](#java-logical-operators-in-condition)
+  - [AND (\&\&)](#and-)
+  - [OR (||)](#or-)
+  - [NOT (!)](#not-)
 - [Java Switch](#java-switch)
 - [Java While Loop](#java-while-loop)
 - [Java For Loop](#java-for-loop)
@@ -483,7 +501,7 @@ Other common escape sequences that are valid in Java are:
 | \f   | Form Feed       |
 
 
-> [!NOTE] Note
+> [!NOTE] 
 > Most of these escape codes are rarely used in modern programming. The most common ones are `\n` (new line), `\"` (double quote), and `\\` (backslash).
 
 ---
@@ -543,7 +561,7 @@ System.out.println(result);
 ```
 
 
-> [!NOTE] Note
+> [!NOTE]
 > While you can use `concat()` to join multiple strings, most developers prefer the `+` operator because it is shorter and easier to read.
 
 
@@ -656,7 +674,7 @@ A list of all assignment operators:
 | >>=      | x >>= 3 | x = x >> 3 |
 | <<=      | x <<= 3 | x = x << 3 |
 
-> [!NOTE] Note
+> [!NOTE]
 > Most assignment operators are just shorter ways of writing code. For example, `x += 5` is the same as `x = x + 5`, but shorter and often easier to read.
 > 
 
@@ -737,10 +755,425 @@ System.out.println(result2);
 
 ---
 # Java Math
+The Java Math class has many methods that allows you to perform mathematical tasks on numbers.
+
+---
+## Math.max(x,y)
+The `Math.max(x,y)` method can be used to find the highest value of _x_ and _y_:
+
+```java
+Math.max(5, 10);
+// Output: 10
+```
+
+---
+
+## Math.min(_x,y_)
+
+The `Math.min(x,y)` method can be used to find the lowest value of _x_ and _y_:
+
+**Example**
+
+```java
+Math.min(5, 10);
+// Output: 5
+```
+
+---
+
+## Math.sqrt(_x_)
+
+The `Math.sqrt(x)` method returns the square root of _x_:
+
+**Example**
+
+```java
+Math.sqrt(64);
+// Output: 8.0
+```
+
+---
+
+## Math.abs(_x_)
+
+The `Math.abs(x)` method returns the absolute (positive) value of _x_:
+
+**Example**
+
+```java
+Math.abs(-4.7);
+// Output: 4.7
+```
+
+---
+
+## Math.pow(_x, y_)
+
+The `Math.pow(x,y)` method returns the value of _x_ raised to the power of _y_:
+
+**Example**
+
+```java
+Math.pow(2, 8);  // 256.0
+```
+
+> [!NOTE]
+> 
+>`Math.pow(2, 8)` means `2` multiplied by itself 8 times:  
+2 * 2 * 2 * 2 * 2 * 2 * 2 * 2 = 256
+>
+>The `Math.pow()` method always returns a `double`, even if the result is a whole number. For example, `Math.pow(2, 8)` returns `256.0` (not `256`).
+
+---
+
+## Rounding Methods
+
+Java has several methods for rounding numbers:
+
+- `Math.round(x)` - rounds to the nearest integer
+- `Math.ceil(x)` - rounds up (returns the smallest integer greater than or equal to x)
+- `Math.floor(x)` - rounds down (returns the largest integer less than or equal to x)
+
+**Example**
+
+```java
+Math.round(4.6);  // 5
+Math.ceil(4.1);   // 5.0
+Math.floor(4.9);  // 4.0
+```
+
+---
+
+## Random Numbers
+
+`Math.random()` returns a random number between 0.0 (inclusive), and 1.0 (exclusive):
+
+**Example**
+
+```java
+Math.random();
+```
+
+To get more control over the random number, for example, if you only want a random number between 0 and 100, you can use the following formula:
+
+### Example
+
+```java
+int randomNum = (int)(Math.random() * 101);  // 0 to 100
+```
+
+
+> [!NOTE]
+> `Math.random()` returns a `double`. To get an integer, you need to cast it with `(int)`.
 
 
 ---
 # Java If...Else
+Conditions and if statements let you control the flow of your program - deciding which code runs, and which code is skipped.
+
+Most often, conditions are created using comparison operators:
+
+Less than: `a < b`
+Less than or equal to: `a <= b`
+Greater than: `a > b`
+Greater than or equal to: `a >= b`
+Equal to: `a == b`
+Not equal to: `a != b`
+
+Java has the following conditional statements:
+
+- [`if`](#the-if-statement): to specify a block of code to be executed, if a specified condition is `true`
+- [`else`](#the-else-statement): to specify a block of code to be executed, if the same condition is `false`
+- [`else if`](#the-else-if-statement): to specify a new condition to test, if the first condition is `false`
+- [`switch`](#java-switch): to specify many alternative blocks of code to be executed
+
+---
+## The if Statement
+The `if` statement specifies a block of code to be executed if a condition is `true`.
+
+**Syntax**
+```java
+if (condition) {
+  // block of code to be executed if the condition is true
+}
+```
+
+**Example**
+```java
+if (20 > 18) {
+  System.out.println("20 is greater than 18");
+}
+```
+
+or compare variables
+
+```java
+int x = 20;
+int y = 18;
+if (x > y) {
+  System.out.println("x is greater than y");
+}
+```
+
+Comparison is also often used to check if two values are equal, using the `==` operator:
+
+```java
+int x = 20;
+int y = 20;
+if (x == y) {
+  System.out.println("x is equal to y");
+}
+```
+
+You can also test boolean variables directly in an `if` statement:
+
+```java
+boolean isLightOn = true;
+
+if (isLightOn) {
+  System.out.println("The light is on.");
+}
+```
+
+> [!NOTE]
+> Writing `if (isLightOn)` is the same as writing `if (isLightOn == true)`, but shorter and easier to read.
+
+---
+## The else Statement
+The `else` statement lets you run a block of code when the condition in the `if` statement is `false`.
+
+**Syntax**
+```java
+if (condition) {
+  // block of code to be executed if the condition is true
+} else {
+  // block of code to be executed if the condition is false
+}
+```
+
+**Example**
+```java
+boolean isRaining = false;
+
+if (isRaining) {
+  System.out.println("Bring an umbrella!");
+} else {
+  System.out.println("No rain today, no need for an umbrella!");
+} 
+// Output: No rain today, no need for an umbrella!
+```
+
+> [!NOTE] 
+> - `else` does not have a condition - it runs when the `if` condition is `false`.
+> - Do not put a semicolon right after `if (condition)`. That would end the statement early and make `else` behave unexpectedly.
+
+---
+## The else if Statement
+Use the `else if` statement to specify a new condition if the first condition is `false`.
+
+**Syntax**
+```java
+if (condition1) {
+  // block of code to be executed if condition1 is true
+} else if (condition2) {
+  // block of code to be executed if the condition1 is false and condition2 is true
+} else {
+  // block of code to be executed if the condition1 is false and condition2 is false
+}
+```
+
+**Example**
+```java
+int weather = 2; // 1 = raining, 2 = sunny, 3 = cloudy
+
+if (weather == 1) {
+  System.out.println("Bring an umbrella.");
+} else if (weather == 2) {
+  System.out.println("Wear sunglasses.");
+} else {
+  System.out.println("Just go outside normally.");
+}
+// Output: "Wear sunglasses."
+ 
+```
+
+---
+## Nested if
+You can also place an `if` statement inside another `if`.
+
+**Syntax**
+```java
+if (condition1) {
+  // code to run if condition1 is true
+  if (condition2) {
+    // code to run if both condition1 and condition2 are true
+  }
+}
+```
+
+**Example**
+```java
+int x = 15;
+int y = 25;
+
+if (x > 10) {
+  System.out.println("x is greater than 10");
+  
+  // Nested if 
+  if (y > 20) {
+    System.out.println("y is also greater than 20");
+  }
+}
+// Output: x is greater than 10
+// Output: y is also greater than 20
+```
+
+**Vote Example**
+```java
+int age = 20;
+boolean isCitizen = true;
+
+if (age >= 18) {
+  System.out.println("Old enough to vote.");
+  
+  if (isCitizen) {
+    System.out.println("And you are a citizen, so you can vote!");
+  } else {
+    System.out.println("But you must be a citizen to vote.");
+  }
+} else {
+  System.out.println("Not old enough to vote.");
+}
+// Output: Old enough to vote.
+// Output: And you are a citizen, so you can vote!
+```
+
+> [!NOTE] 
+> - You can nest as many `if` statements as you want, but avoid making the code too deep - it can become hard to read.
+>- Nested `if` is often used together with `else` and `else if` for more complex decision making.
+
+---
+# Java Ternary Operator
+There is also a short-hand [if else](#java-ifelse), which is known as the **ternary operator** because it consists of three operands.
+
+**Syntax**
+```java
+variable = (condition) ? expressionTrue :  expressionFalse;
+```
+
+**Example**
+Instead of writing:
+```java
+int time = 20;
+if (time < 18) {
+  System.out.println("Good day.");
+} else {
+  System.out.println("Good evening.");
+}
+```
+You can write:
+```java
+int time = 20;
+String result = (time < 18) ? "Good day." : "Good evening.";
+System.out.println(result);
+```
+
+or you can use it directly inside the `pringln()`
+
+```java
+int time = 20;
+System.out.println((time < 18) ? "Good day." : "Good evening.");
+```
+
+---
+## Nested Ternary Operator
+You can nest ternary operators to handle more than two possible outcomes, but this can make your code harder to read:
+
+**Example**
+```java
+int time = 22;
+String message = (time < 12) ? "Good morning."
+               : (time < 18) ? "Good afternoon."
+               : "Good evening.";
+System.out.println(message);
+```
+
+> [!NOTE] 
+> Use the ternary operator for short, simple choices. For longer or more complex logic, the regular `if...else` is easier to read.
+
+---
+# Java Logical Operators in Condition
+You can combine or reverse conditions using [logical operators](#logical-operators). These work together with `if`, `else`, and `else if` to build more complex decisions.
+
+- `&&` (AND) - all conditions must be true
+- `||` (OR) - at least one condition must be true
+- `!` (NOT) - reverses a condition (true = false, false = true)
+  
+---
+## AND (&&)
+Use AND (`&&`) when **both** conditions must be true.
+
+**Example**
+```java
+int a = 200;
+int b = 33;
+int c = 500;
+
+if (a > b && c > a) {
+  System.out.println("Both conditions are true");
+}
+```
+
+---
+## OR (||)
+Use OR (`||`) when **at least one** of the conditions can be true.$
+
+**Example**
+```java
+int a = 200;
+int b = 33;
+int c = 500;
+
+if (a > b || a > c) {
+  System.out.println("At least one condition is true");
+}
+```
+
+---
+## NOT (!)
+Use NOT (`!`) to **reverse** a condition.
+
+**Example**
+```java
+int a = 33;
+int b = 200;
+
+if (!(a > b)) {
+  System.out.println("a is NOT greater than b");
+}
+```
+---
+**Login Example**
+```java
+boolean isLoggedIn = true;
+boolean isAdmin = false;
+int securityLevel = 3; // 1 = highest
+
+if (isLoggedIn && (isAdmin || securityLevel <= 2)) {
+  System.out.println("Access granted");
+} else {
+  System.out.println("Access denied");
+}
+
+// Try changing securityLevel to test different outcomes:
+//
+// securityLevel 1 = Access granted
+// securityLevel 2 = Access granted
+// securityLevel 3 = Access denied
+// securityLevel 4 = Access denied
+//
+// If isAdmin = true, access is granted.
+```
 
 ---
 # Java Switch
