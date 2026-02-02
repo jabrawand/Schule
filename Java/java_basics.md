@@ -62,14 +62,11 @@
   - [OR (||)](#or-)
   - [NOT (!)](#not-)
 - [Java Switch](#java-switch)
-- [Java While Loop](#java-while-loop)
-- [Java For Loop](#java-for-loop)
-  - [Print Numbers](#print-numbers-1)
-  - [Print Even Numbers](#print-even-numbers)
-  - [Sum of Numbers](#sum-of-numbers)
-  - [Reverse Output](#reverse-output)
-  - [For Loop False Condition](#for-loop-false-condition)
-  - [Nested Loop](#nested-loop)
+- [Java Loops](#java-loops)
+  - [The While Loop](#the-while-loop)
+  - [The Do-While Loop](#the-do-while-loop)
+  - [The For Loop](#the-for-loop)
+    - [Nested Loop](#nested-loop)
 - [Java Break/Continue](#java-breakcontinue)
 - [Java Arrays](#java-arrays)
   - [Declare Arrays](#declare-arrays)
@@ -1177,12 +1174,181 @@ if (isLoggedIn && (isAdmin || securityLevel <= 2)) {
 
 ---
 # Java Switch
+Instead of writing **many** `if..else` statements, you can use the `switch` statement.
+
+**Syntax**
+```java
+switch(expression) {
+  case x:
+    // code block
+    break;
+  case y:
+    // code block
+    break;
+  default:
+    // code block
+}
+```
+
+This is how it works:
+
+- The `switch` expression is evaluated once.
+- The result is compared with each `case` value.
+- If there is a match, the matching block of code runs.
+- The `break` statement stops the switch after the matching case has run.
+- The `default` statement runs if there is no match.
+
+**Example**
+```java
+int day = 4;
+switch (day) {
+  case 1:
+    System.out.println("Monday");
+    break;
+  case 2:
+    System.out.println("Tuesday");
+    break;
+  case 3:
+    System.out.println("Wednesday");
+    break;
+  case 4:
+    System.out.println("Thursday");
+    break;
+  case 5:
+    System.out.println("Friday");
+    break;
+  case 6:
+    System.out.println("Saturday");
+    break;
+  case 7:
+    System.out.println("Sunday");
+    break;
+}
+// Outputs "Thursday" (day 4)
+```
+
+**Example with default**
+```java
+int day = 4;
+switch (day) {
+  case 6:
+    System.out.println("Today is Saturday");
+    break;
+  case 7:
+    System.out.println("Today is Sunday");
+    break;
+  default:
+    System.out.println("Looking forward to the Weekend");
+}
+// Outputs "Looking forward to the Weekend"
+ 
+```
+
+> [!NOTE]
+> Note that if the `default` statement is used as the last statement in a switch block, it does not need a break.
 
 ---
-# Java While Loop
+# Java Loops
+Loops can execute a block of code as long as a specified condition is true.
+
+Loops are handy because they save time, reduce errors, and they make code more readable.
 
 ---
-# Java For Loop
+## The While Loop
+The `while` loop repeats a block of code as long as the specified condition is **true**:
+
+**Syntax**
+```java
+while (condition) {
+  // code block to be executed
+}
+```
+
+**Example**
+```java
+int i = 0;
+while (i < 5) {
+  System.out.println(i);
+  i++;
+}
+```
+
+> [!NOTE]
+> Do not forget to increase the variable used in the condition (`i++`), otherwise the loop will never end!
+>
+> The letter `i` a **counter** variable and a common choice in simple loops because it's short, traditional, and stands for 'index' or 'iterator'.
+
+You can also use the `while` Loop to count down.
+
+**Example**
+```java
+int countdown = 3;
+
+while (countdown > 0) {
+  System.out.println(countdown);
+  countdown--;
+}
+
+System.out.println("Happy New Year!!");
+```
+
+> [!NOTE]
+> If the condition is `false` at the beginning, the code inside the loop will never run.
+
+**Example**
+```java
+int i = 10;
+
+while (i < 5) {
+  System.out.println("This will never be printed");
+  i++;
+}
+```
+
+---
+## The Do-While Loop
+The `do-while` loop is a variant of the `while` loop. This loop will execute the code block **once**, before checking if the condition is **true**. Then it will repeat the loop as long as the condition is **true**.
+
+**Syntax**
+```java
+do {
+  // code block to be executed
+}
+while (condition);
+```
+
+> [!NOTE] 
+> The semicolon `;` after the `while` is required!
+
+**Example**
+```java
+int i = 0;do {
+  System.out.println(i);
+  i++;
+}
+while (i < 5);
+```
+
+> [!NOTE] 
+> Do not forget to increase the variable used in the condition (`i++`), otherwise the loop will never end!
+
+**Example False Condition**
+```java
+int i = 10;
+
+do {
+  System.out.println("i is " + i);
+  i++;
+} while (i < 5);
+```
+
+> [!NOTE] 
+> A `do/while` loop always runs at least once, even if the condition is false at the start. This is the key difference from a `while` loop, which would skip the code block completely in the same situation.
+>
+> This behavior makes `do/while` useful when you want something to happen at least once, such as showing a message or asking the user for input.
+
+---
+## The For Loop
 When you know exactly how many times you want to loop through a block of code, use the `for` loop.
 
 **Syntax**
@@ -1196,7 +1362,7 @@ for (statement 1; statement 2; statement 3) {
 - **Statement 3** is executing (every time) after the code block has been executed.
   
 ---
-## Print Numbers
+**Example Print Numbers**
 For example print the numbers 0 to 4.
 
 ```java
@@ -1209,7 +1375,7 @@ for (int i = 0; i < 5; i++) {
 - **Statement 3** increases a value each time the code block has run: `i++`.
 
 ---
-## Print Even Numbers
+**Example Print Even Numbers**
 This example prints even values between 0 and 10
 
 ```java
@@ -1228,7 +1394,7 @@ for (int i = 0; i <= 10; i++) {
 // Output: 0 2 4 6 8 10
 ```
 ---
-## Sum of Numbers
+**Example Sum of Numbers**
 
 ```java
 int sum = 0;
@@ -1239,7 +1405,7 @@ System.out.println("Sum is " + sum);
 // Output: Sum is 15
 ```
 ---
-## Reverse Output
+**Example Reverse Output**
 
 ```java
 for (int i = 5; i > 0; i--) {  
@@ -1247,7 +1413,7 @@ for (int i = 5; i > 0; i--) {
 }
 ```
 ---
-## For Loop False Condition
+**Example False Condition**
 If the condition is `false` right from the start, the code inside the loop will be skipped.
 
 ```java
@@ -1256,7 +1422,7 @@ for (int i = 10; i < 5; i++) {
 }
 ```
 ---
-## Nested Loop
+### Nested Loop
 It is also possible to place a loop inside another loop.
 The "inner loop" will be executed one time for each iteration of the "outer loop"
 
